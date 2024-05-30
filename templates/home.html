@@ -1,0 +1,54 @@
+{% extends 'zaklad.html' %}
+{% load static %}
+{% block content %}
+    <body>
+            <h1>
+            Vítejte na mé osobní stránce
+        </h1>
+        <p>
+            <h2 class="h21">Životopis {{ time }}</h2>
+            Egoistické kecy o mně a mých projektech a programovací jazyky které umím.
+            <ul>
+                <li>2. C</li>
+                <li>2. C#</li>
+                <li>2. C++</li>
+                <li>3. COBOL</li>
+                <li>1. Python</li>
+            </ul>
+        </p>
+        <p>
+            <h2 class="h22">Chyby co jsem našel {{ actual_date|date:"d . M. Y" }}</h2>
+            <ul>
+                <li>1. T-mobile XSS</li>
+                <li>2. Odorik Infinite money glitch</li>
+                <li>3. ITNetwork XSS</li>
+                <li>4. spseol.cz privilegia escalation</li>
+                <li>5. olinx.inf.upol.cz remote code execution</li>
+            </ul>
+        </p>
+        <p>
+            <h2  class="h23">Moje programy {{ kwg }}</h2>
+            Telefoní číslo <strong class="biggie">588288429</strong> - jukebox, VoIP posktuje <strong>Odorik.cz.</strong>
+        </p>
+        <h2  class="h23">Moje projekty(tahám z databáze)</h2>
+        <div style="display: :flex;">
+            {% for project in projects %}
+            <div>
+            {% if project.typ_sluzby_projektu.ikona %}
+                <img src="{{ project.typ_sluzby_projektu.ikona }}" width="20">
+            {% endif %}
+            {% if project.mycode %}
+                <a href="{{ project.mycode }}" target="_blank">Projekt {{ project.name }}</a><br>
+            {% else %}
+                Projekt {{ project.name }}<br>                
+            {% endif %}
+            {% if project.image %}
+                <img src="{{ project.image }}" height="100" loading="lazy"><br>
+            {% endif %}
+            {{ project.get_pretty_description|safe }}<br>
+       </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+{% endblock %}

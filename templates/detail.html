@@ -1,0 +1,19 @@
+{% extends 'zaklad.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div>
+        {% if project.typ_sluzby_projektu.ikona %}
+            <img src="{{ project.typ_sluzby_projektu.ikona }}" width="20"><br>
+        {% endif %}
+        {% if project.mycode %}
+            <a href="{{ project.mycode }}" target="_blank">Projekt {{ project.name }}</a><br>
+        {% else %}
+            Projekt {{ project.name }}<br>                
+        {% endif %}
+        {% if project.image %}
+            Obrázek projektu<br><img src="/{{ project.image }}" height="100" loading="lazy"><br>
+        {% endif %}
+        {{ project.get_pretty_description|safe }}<br></body>
+</html>
+{% endblock %}
